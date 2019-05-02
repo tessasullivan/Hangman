@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ProjectName
+namespace HangmanGame
 {
   public class Startup
   {
@@ -33,11 +33,11 @@ namespace ProjectName
           name: "default",
           template: "{controller=Home}/{action=Index}/{id?}");
       });
-        app.UseStaticFiles();
-        app.Run(async (context) =>
-        {
-          await context.Response.WriteAsync("Hello World!");
-        });
+      app.UseStaticFiles();
+      app.Run(async (context) =>
+      {
+        await context.Response.WriteAsync("Hello World!");
+      });
 
     }
   }

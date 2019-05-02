@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+@using HangmanGame.Models;
+
+<div class="container">
+  <h1>Welcome to Hangman</h1>
+
+  <img src="~/img/@Model.pic"/>
+  <p>@Model.DrawWord()</p>
+  <form action="/guess" method="post">
+    <label for='guess'>Guess</label>
+    <input name='guess' id='guess' type='text'>
+    <button type="submit">Make Guess</button>
+    <p>@Model.Word</p>
+  </form>
+</div>
