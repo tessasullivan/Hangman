@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace HangmanGame.Models
 {
@@ -10,7 +11,7 @@ namespace HangmanGame.Models
     {
       get { return _word; }
     }
-    private string[] _words = new string[] {"watermelon", "pizza"};
+    private string[] _words = new string[] {"watermelon", "pizza", "chips", "coke", "cookie", "chocolate", "apple", "banananananana"};
     private int _lives = 0;
     private bool _hasWon = false;
     private char[] _splitWord;
@@ -27,7 +28,10 @@ namespace HangmanGame.Models
       SetPic();
 
     }
-
+    public bool GetHasWon()
+    {
+      return _hasWon;
+    }
     public void SetPic()
     {
       pic = pics[_lives];
@@ -53,19 +57,21 @@ namespace HangmanGame.Models
       {
         uniqueChars.Remove(guess);
       }
-
-      if(uniqueChars.Count < 1)
-      {
-        _hasWon = true;
-        Console.WriteLine("winner");
-      }
       else
       {
         SetLives();
         SetPic();
       }
+      if(uniqueChars.Count < 1)
+      {
+        _hasWon = true;
+        Console.WriteLine("winner");
+      }
     }
-
+    public int GetLives()
+    {
+      return _lives;
+    }
     public void SetLives()
     {
       _lives++;
@@ -86,7 +92,6 @@ namespace HangmanGame.Models
       {
         _splitWord[i]='_';
       }
-      // _splitWord = _word.ToCharArray();
     }
     public string DrawWord()
     {
@@ -100,8 +105,14 @@ namespace HangmanGame.Models
           }
         }
       }
+      // string output = "";
+      // foreach(char letter in _splitWord)
+      // {
+      //   output += letter + " ";
+      // }
+      // return new string(_splitWord);
 
-      return new string(_splitWord);
+      return String.Join(' ', _splitWord);
     }
   }
 }
