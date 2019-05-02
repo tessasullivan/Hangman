@@ -10,8 +10,9 @@
   <p>@Model.DrawWord()</p>
   <form action="/guess" method="post">
     <label for='guess'>Guess</label>
-    <input name='guess' id='guess' type='text'>
+    <input name='guess' id='guess' type='text' autofocus>
     <button type="submit">Make Guess</button>
+    <p>Not in word: @Model.DisplayIncorrectGuesses()</p>
     <p>@Model.Word</p>
   </form>
 </div>

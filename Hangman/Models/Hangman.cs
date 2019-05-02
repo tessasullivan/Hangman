@@ -17,6 +17,7 @@ namespace HangmanGame.Models
     private char[] _splitWord;
     private List<char> uniqueChars = new List<char>{};
     private List<char> guesses = new List<char>{};
+    private List<char> misses = new List<char>{};
     public string pic;
     private string[] pics = new string[] 
     {"hangman0.png", "hangman1.png", "hangman2.png", "hangman3.png", "hangman4.png", "hangman5.png", "hangman6.png"};
@@ -59,13 +60,14 @@ namespace HangmanGame.Models
       }
       else
       {
+        misses.Add(guess);
         SetLives();
         SetPic();
       }
       if(uniqueChars.Count < 1)
       {
         _hasWon = true;
-        Console.WriteLine("winner");
+        // Console.WriteLine("winner");
       }
     }
     public int GetLives()
@@ -75,12 +77,6 @@ namespace HangmanGame.Models
     public void SetLives()
     {
       _lives++;
-
-      if(_lives >= 6)
-      {
-        //gameover
-        Console.WriteLine("game is over");
-      }
     }
 
     public void SetWord()
@@ -105,14 +101,16 @@ namespace HangmanGame.Models
           }
         }
       }
-      // string output = "";
-      // foreach(char letter in _splitWord)
-      // {
-      //   output += letter + " ";
-      // }
-      // return new string(_splitWord);
-
       return String.Join(' ', _splitWord);
+    }
+    public string DisplayIncorrectGuesses()
+    {
+      string output = "";
+      foreach(char guess in misses)
+      {
+        output += guess + " ";
+      }
+      return output;
     }
   }
 }
